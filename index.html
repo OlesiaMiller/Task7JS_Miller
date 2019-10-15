@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+<header class="header">
+	<div class="header_bar">
+		<h1 class="header__title">My Plants</h1>
+			<div class="header_bar-basket" id="basket">
+				<a class="header_bar-basket-icon" href="basket.html"><i class="header_bar-basket-img fas fa-shopping-basket"></i></a>
+				<span  class="header_bar-basket-count" id="basketCount">0</span>
+			</div>
+	</div>
+
+	<div class="header_navbar">
+		<li class="header_navbar-item"><a href="#" class="header_navbar-item-link"></a>Каталог</li>
+		<li class="header_navbar-item"><a href="#" class="header_navbar-item-link"></a>О нас</li>
+		<li class="header_navbar-item"><a href="#" class="header_navbar-item-link"></a>Контакты</li>
+		<li class="header_navbar-item"><a href="#" class="header_navbar-item-link"></a>Доставка и оплата</li>
+
+		<div class="header_navbar-display">
+			<span class="header_navbar-display-cell" id="cell"><i class="fas fa-th"></i></span>
+			<span class="header_navbar-display-list" id="list"><i class="fas fa-list"></i></span>
+
+		</div>
+	</div>
+
+</header>
+		
+<main class="main">
+	<div class="main_container">
+	<div class="main_add">
+		<button class="main_add-button" id="add">Загрузить новый товар</button>
+		<form method="post"  enctype="multipart/form-data" id="form" class="form">
+			<input type='file' size='10'  name='filename' id='fileName' class="upload">
+			<p>Описание</p>
+			<textarea cols="50"  type="text" id="newDiscription"></textarea> 
+			<p>Цена</p>
+			<input type="number" id="newCost" class="cost"><br>
+			<a href="#" class="upload_files button upload" id="download">Загрузить файлы</a>
+		</form>
+		
+	</div>
+
+
+	<div class="main_filters">
+		<button type="reset" id="available">Показать товар в наличии</button>
+		<div class="main_filter-expl">Цены в диапазоне</div>
+		<form action="">
+			<input id="startPrice" placeholder="c" type="text">
+			<input id="endPrice" placeholder="до" type="text">
+			<a href="#"id="findPrice">Показать</a>
+		</form>
+		<button class="main_filter-button" id="cleanFilter">Убрать все фильтры</button>
+		<div class="main_markers">
+			<span class="main_markers-items" id="markerString"></span>
+		</div>
+	</div>
+
+	<div class="main_sort">
+		<i class="main_filter-price fas fa-sort-numeric-down" id="sort"></i>
+		<i class="main_filter-price fas fa-sort-numeric-up" id="sortRevers"></i>
+	</div>
+
+	</div>
+
+	<div class="container" id="container">
+					
+  </div>
+	
+	<button id="showMore" class="button"> Show more</button>
+
+</main>
+       
+    <footer class="footer">
+        <div class="footer__menu">
+            <ul>
+                <li>Track Order</li>
+                <li>About Us</li>
+                <li>Contacts Us</li>
+            </ul>
+        </div>
+        <div class="footer__social">
+            <i class="footer__social-item fab fa-facebook-square"></i>
+            <i class="footer__social-item fab fa-instagram"></i>
+            <i class="footer__social-item fab fa-pinterest-square"></i>
+        </div>
+    </footer>
+ 
+<!-- <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'></script>       -->
+<script src="main.js"></script>
+</body>
+</html>
