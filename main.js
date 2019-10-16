@@ -1,4 +1,5 @@
-// (function($){
+(function($){
+
     var basket = document.getElementById('basket');
     var container = document.getElementById("container");
     var allContainers = document.getElementsByClassName('container_item');
@@ -49,7 +50,7 @@
                       {name: 'images/Aloe-Vera5_3.jpg', description: 'Aloe Vera In Mini Dolores Planter', price: '$100',stock: 'Not Available'}
 ]
 window.onload = function() {
-    localStorage.clear();
+    // localStorage.clear();
     cellClick(imgCollect);
     showMore.style.display = 'block';
 
@@ -61,9 +62,7 @@ var fileName = document.getElementById('fileName');
 
 var z = 0;
 var y = 8; // для подсчета товаров на странице
-// var marker = 0; //маркер для товаров в наличии
-// var markerCell = 1; //маркер для вида страницы СЕТКА
-// var markerBetween = 0; //маркер для отфильтрованных товаров по цене
+
 var imgCollectAvail = []; // массив для товара, который в наличии
 var imgCollectBetween = []; // массив для фильтрации по цене
 var count = 0;
@@ -82,7 +81,6 @@ var markerArr = {
 
 cleanFilter.addEventListener('click', function() {
     container.innerHTML = '';
-    console.log(imgCollect);
     markerString.innerHTML = '';
     markerArr.markerAvail = 0;
     markerArr.markerBetween = 0;
@@ -103,6 +101,10 @@ download.addEventListener('click', function() {
     form.style.display = 'none';
 
     var imgName = fileName.value;
+    localStorage.setItem('imgName', imgName);
+    var imgName1 = localStorage.getItem(imgName);
+    var testImg = document.getElementById('testImg');
+    testImg.style.src = imgName1;
 
     let newGoods = {
 	    name: 'uploads/' + imgName.substring(12),
@@ -117,23 +119,15 @@ download.addEventListener('click', function() {
 
     add.style.display = 'block';
     form.style.display = 'none';
-    console.log(y);
     button.style.display = 'block';
-    
-
     })
     // кнопка ДОБАВЛЕНИЯ НОВОГО ТОВАРА
-    
-
-
-
 
 available.addEventListener('click', function() {
     container.innerHTML = '';
     z = 0;
     y = 8;
     showMore.style.display = 'block';
-    console.log(markerArr)
     if (markerArr.markerBetween == 1) {
         isAvailable(imgCollectBetween);
     } else {
@@ -164,7 +158,6 @@ available.addEventListener('click', function() {
 
 var isAvailable = function(arr) {
     
-    console.log(arr);
     for (let i = 0; i < arr.length; i++) {
         if (arr[i].stock == 'Available') {
             imgCollectAvail.push(arr[i]);
@@ -178,7 +171,6 @@ findPrice.addEventListener('click', function(){
     container.innerHTML = '';
     markerArr.markerBetween = 1;
 
-
     var p2 = document.createElement('p');
     p2.innerHTML = 'цена';
     markerString.appendChild(p2);
@@ -186,7 +178,7 @@ findPrice.addEventListener('click', function(){
     imgCollectBetween = [];
     z = 0;
     y = 8;
-
+  
     if (markerArr.markerCell == 1) {
         priceBetween(imgCollect)
     } else {
@@ -218,7 +210,6 @@ var cellClick = function(arr) {
         container.appendChild(n);
 
         var s = document.createElement('span');
-        console.log(arr[i].stock);
         s.innerHTML = arr[i].stock;
         s.className = (s.innerHTML == 'Available') ? 'stock' : 'stock red';
         n.appendChild(s);
@@ -324,8 +315,6 @@ var cellCreate = function() {
 } // навешивание классов для сетки
 
 var listClick = function(arr) {
-    console.log(arr);
-    console.log('мы тута');
 
     for (let i = z; i < y; i++) {
         var n = document.createElement('div');
@@ -335,13 +324,8 @@ var listClick = function(arr) {
         var s = document.createElement('span');
         
         s.innerHTML = arr[i].stock;
-
-
-
         s.className = (s.innerHTML == 'Available') ? 'stock-list' : 'stock-list red';
         n.appendChild(s);
-
-
 
         var m = document.createElement('div');
         m.className = 'container_item-list-img';
@@ -454,8 +438,6 @@ list.addEventListener('click', function() {
     container.innerHTML = '';
 
     markerArr.markerCell = 0;
-    console.log(markerArr);
-
 
     form.style.display = 'none';
     add.style.display = 'block';
@@ -472,15 +454,6 @@ list.addEventListener('click', function() {
         listClick(imgCollect);
 
     }
-    // if (markerArr.markerBetween == 1) {
-    //     listClick(imgCollectBetween)
-
-    // } else {
-    //     listClick(imgCollect);
-
-    // }
-
-
 
     for (let i = 0; i < allContainers.length; i++) {
         allContainers[i].classList.add('container_item-list'); 
@@ -489,19 +462,12 @@ list.addEventListener('click', function() {
         img[i].classList.add('img-list'); 
         description[i].classList.add('container_item-list-description'); 
         price[i].classList.add('container_item-list-price'); 
-
-        
     }
-
-    
-
-
 }) // кнопка присвоения классов СПИСКА
 
 
 
 container.addEventListener('mousedown', function(e) {
-        console.log('нажала');
         var one1 = document.getElementsByClassName('color-pink');
         var two2 = document.getElementsByClassName('color-green');
         var three3 = document.getElementsByClassName('color-white');
@@ -522,11 +488,6 @@ container.addEventListener('mousedown', function(e) {
 
     
 var changeColor = function(arr, one1, two2, three3) {
-    console.log(one1, two2, three3);
-    console.log(arr);
-    // var ott = get
-
-
     for (let i = 0; i <arr.length; i++) {
         if (typeof arr[i].name['one'] == "string") {
             one1[i].addEventListener('click', function(){
@@ -554,19 +515,15 @@ var changeColor = function(arr, one1, two2, three3) {
 var more = function(arr) {
 
     if (y >= arr.length) {
-        console.log('hide');
         
         showMore.style.display = 'none';
         y = 0;
         z = 8;
     }
-
-
     z += 8;
     y += 8;
 
     let containerCount = document.getElementsByClassName('container_item-grid');
-    console.log(containerCount.length);
     containerCount.length > 0 ? cellClick(arr) : listClick(arr);
 } //функция для добавления еще 8 товаров
 
@@ -575,7 +532,6 @@ showMore.addEventListener('click', function() {
 
     // console.log(marker);
     if (markerArr.markerBetween == 1 && markerArr.markerAvail == 1) {
-        console.log('тут два условия');
         more(imgCollectAvail);
     } else if (markerArr.markerBetween == 1 && markerArr.markerAvail == 0) {
 
@@ -606,7 +562,6 @@ sortButton.addEventListener('click', function() {
     if (markerArr.markerAvail == 1) {
         priceCompare(imgCollectAvail)
     } else if (markerArr.markerBetween == 1) {
-        console.log(imgCollectBetween)
         priceCompare(imgCollectBetween);
     } else {
         priceCompare(imgCollect);
@@ -727,108 +682,82 @@ var basketAdd = function(e) {
     basketCount.innerHTML = count;
     var perentAdd = e.parentElement;
 
-    // console.log(perentAdd);
-    console.log(perentAdd.children[4]);
-
-
-
- 
-            var objectAdd = {
-                imgAdd: perentAdd.children[1].children[0].src,
-                discAdd: perentAdd.children[3].children[0].innerHTML,
-                priceAdd: perentAdd.children[4].children[0].innerHTML.replace(reg, '')
-                
-            };
-            addArr.push(objectAdd);
-
-
-
-            var tov = JSON.stringify(addArr);
-            localStorage.setItem("myKey", tov);
-            // localStorage.setItem("myKey", JSON.stringify(tov));
-    
-    
-
-
-
-
+    var objectAdd = {
+        imgAdd: perentAdd.children[1].children[0].src,
+        discAdd: perentAdd.children[3].children[0].innerHTML,
+        priceAdd: perentAdd.children[4].children[0].innerHTML.replace(reg, '')
+    };
+    addArr.push(objectAdd);
+    var tov = JSON.stringify(addArr);
+    localStorage.setItem("myKey", tov);
 
 } // функция для индикаторов
 
+var files; // переменная. будет содержать данные файлов
+
+// заполняем переменную данными файлов, при изменении значения file поля
+$('input[type=file]').on('change', function(){
+	files = this.files;
+});
 
 
+// обработка и отправка AJAX запроса при клике на кнопку upload_files
+$('.upload_files').on( 'click', function( event ){
+
+	event.stopPropagation(); // остановка всех текущих JS событий
+	event.preventDefault();  // остановка дефолтного события для текущего элемента - клик для <a> тега
+
+	// ничего не делаем если files пустой
+	if( typeof files == 'undefined' ) return;
+
+	// создадим данные файлов в подходящем для отправки формате
+	var data = new FormData();
+	$.each( files, function( key, value ){
+		data.append( key, value );
+	});
+
+	// добавим переменную идентификатор запроса
+	data.append( 'my_file_upload', 1 );
+
+	// AJAX запрос
+	$.ajax({
+		url         : './submit.php',
+		type        : 'POST',
+		data        : data,
+		cache       : false,
+		dataType    : 'json',
+		// отключаем обработку передаваемых данных, пусть передаются как есть
+		processData : false,
+		// отключаем установку заголовка типа запроса. Так jQuery скажет серверу что это строковой запрос
+		contentType : false,
+		// функция успешного ответа сервера
+		success     : function( respond, status, jqXHR ){
+
+			// ОК
+			if( typeof respond.error === 'undefined' ){
+				// файлы загружены, делаем что-нибудь
+
+				// покажем пути к загруженным файлам в блок '.ajax-reply'
+
+				var files_path = respond.files;
+				var html = '';
+				$.each( files_path, function( key, val ){
+					 html += val +'<br>';
+				} )
+
+				$('.ajax-reply').html( html );
+			}
+			// error
+			else {
+				console.log('ОШИБКА: ' + respond.error );
+			}
+		},
+		// функция ошибки ответа сервера
+		error: function( jqXHR, status, errorThrown ){
+			console.log( 'ОШИБКА AJAX запроса: ' + status, jqXHR );
+		}
+	});
+});
 
 
-
-
-
-
-
-// var files; // переменная. будет содержать данные файлов
-
-// // заполняем переменную данными файлов, при изменении значения file поля
-// $('input[type=file]').on('change', function(){
-// 	files = this.files;
-// });
-
-
-// // обработка и отправка AJAX запроса при клике на кнопку upload_files
-// $('.upload_files').on( 'click', function( event ){
-
-// 	event.stopPropagation(); // остановка всех текущих JS событий
-// 	event.preventDefault();  // остановка дефолтного события для текущего элемента - клик для <a> тега
-
-// 	// ничего не делаем если files пустой
-// 	if( typeof files == 'undefined' ) return;
-
-// 	// создадим данные файлов в подходящем для отправки формате
-// 	var data = new FormData();
-// 	$.each( files, function( key, value ){
-// 		data.append( key, value );
-// 	});
-
-// 	// добавим переменную идентификатор запроса
-// 	data.append( 'my_file_upload', 1 );
-
-// 	// AJAX запрос
-// 	$.ajax({
-// 		url         : './submit.php',
-// 		type        : 'POST',
-// 		data        : data,
-// 		cache       : false,
-// 		dataType    : 'json',
-// 		// отключаем обработку передаваемых данных, пусть передаются как есть
-// 		processData : false,
-// 		// отключаем установку заголовка типа запроса. Так jQuery скажет серверу что это строковой запрос
-// 		contentType : false,
-// 		// функция успешного ответа сервера
-// 		success     : function( respond, status, jqXHR ){
-
-// 			// ОК
-// 			if( typeof respond.error === 'undefined' ){
-// 				// файлы загружены, делаем что-нибудь
-
-// 				// покажем пути к загруженным файлам в блок '.ajax-reply'
-
-// 				var files_path = respond.files;
-// 				var html = '';
-// 				$.each( files_path, function( key, val ){
-// 					 html += val +'<br>';
-// 				} )
-
-// 				$('.ajax-reply').html( html );
-// 			}
-// 			// error
-// 			else {
-// 				console.log('ОШИБКА: ' + respond.error );
-// 			}
-// 		},
-// 		// функция ошибки ответа сервера
-// 		error: function( jqXHR, status, errorThrown ){
-// 			console.log( 'ОШИБКА AJAX запроса: ' + status, jqXHR );
-// 		}
-// 	});
-// });
-
-
-// })(jQuery)
+})(jQuery)

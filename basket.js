@@ -2,9 +2,6 @@ var basketContainer = document.getElementById('basket_container');
 var total = document.getElementById('total');
 var totalPrice = 0;
 window.onload = function() {
-    // let discription = localStorage.getItem('myKey');
-
-
     var a = JSON.parse(localStorage.getItem("myKey"));
  
  
@@ -31,7 +28,8 @@ for (let i = 0; i < a.length; i++) {
     baskRow.appendChild(pr);
 
     totalPrice += +a[i].priceAdd;
+    total.innerHTML = '$' + totalPrice;
 }
-total.innerHTML = '$' + totalPrice;
+
 
 }

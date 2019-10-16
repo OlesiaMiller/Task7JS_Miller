@@ -273,11 +273,7 @@ h2 {
     
 }
 
-/* .add {
-    position: relative;
-    top: 25px;
-    right: 25px;
-} */
+
 
 .form {
     display: none;
@@ -405,4 +401,28 @@ h2 {
 
 .disc-add {
     margin-right: 50px;
+}
+
+.footer {
+    margin-top: 20px;
+    width: 100%;
+    height: 100px;
+    background-color: #00AB84;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+}
+
+
+.footer__social-item{
+    display: inline;
+    padding-left: 10px;
+}
+
+.footer__menu-item {
+    display: inline;
+    list-style: none;
+    padding-right: 15px;
 }
